@@ -38,17 +38,17 @@ while True:
                     thumb_y = screen_height / frame_height * y
 
                     # Check for left click gesture
-                    if abs(y_index - thumb_y) < 20 and abs(index_x - thumb_x) < 20:
+                    if abs(y_index - thumb_y) < 20 and abs(x_index - thumb_x) < 20:
                         pyautogui.click()
                         print("Left Click!")
 
                 if id == 8:  # Index finger tip
                     cv2.circle(img=frame, center=(x, y), radius=10, color=(0, 255, 255))
-                    index_x = screen_width / frame_width * x
+                    x_index = screen_width / frame_width * x
                     y_index = screen_height / frame_height * y
 
                     # to move the cursor along the index finger
-                    pyautogui.moveTo(index_x, y_index)
+                    pyautogui.moveTo(x_index, y_index)
 
                 if id == 12:  # Middle finger tip
                     cv2.circle(img=frame, center=(x, y), radius=10, color=(0, 255, 255))
@@ -57,7 +57,7 @@ while True:
 
                     # Check if index and middle fingers are close for right click
                     if (
-                        abs(index_x - middle_finger_x) < 20
+                        abs(x_index - middle_finger_x) < 20
                         and abs(y_index - middle_finger_y) < 20
                     ):
                         if not right_click_triggered:
@@ -68,7 +68,7 @@ while True:
 
                     # Reset right_click_triggered if fingers are not close
                     if (
-                        abs(index_x - middle_finger_x) >= 20
+                        abs(x_index - middle_finger_x) >= 20
                         or abs(y_index - middle_finger_y) >= 20
                     ):
                         right_click_triggered = False
